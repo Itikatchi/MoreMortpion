@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Morpion en ligne</title>
+</head>
+<body>
+<h2>Morpion en ligne</h2>
+<div id="board"></div>
+<p id="status">En attente...</p>
+
+<script>
+    let player = prompt("Choisissez X ou O").toUpperCase();
+    let socket = new WebSocket("ws://localhost:8080");
+
+    socket.onopen = () => {
+        console.log("Connecté au serveur !");
+        document.getElementById("status").textContent = "Connecté en tant que " + player;
+    };
+
+    socket.onmessage = (event) => {
+        let data = JSON.parse(event.data);
+        console.log(data);
+
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+
+        document.getElementById("board").innerHTML = JSON.stringify(data.board);
+        document.getElementById("status").textContent = data.winner ? data.winner : "Tour de " + data.turn;
+    };
+
+    function play(row, col) {
+        socket.send(JSON.stringify({ player: player, row: row, col: col }));
+    }
+</script>
+</body>
+</html>
