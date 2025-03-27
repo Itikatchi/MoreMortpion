@@ -1,0 +1,44 @@
+body{
+	background: #111110;
+	color:  #F4D4F4;
+
+}
+
+.info{
+	background: #21121D;
+	width: auto;
+    padding:20px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+.carre{
+	display: grid;
+	display:grid;
+  	grid-template-columns: 50% 50%;
+  	grid-column-gap: 10px;
+  	grid-row-gap: 10px;
+	width: 85vh;
+	height: 60vh;
+	padding: 20px;
+}
+
+.jeu{
+	background: red;
+	width: 60vh;
+	height: 60vh;
+	padding: 20px;
+}
+
+.duo{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+h4{
+	font-size: 4vh;
+}
